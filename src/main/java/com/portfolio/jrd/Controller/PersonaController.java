@@ -1,8 +1,6 @@
 package com.portfolio.jrd.Controller;
 
-import com.portfolio.jrd.Dto.dtoEducacion;
 import com.portfolio.jrd.Dto.dtoPersona;
-import com.portfolio.jrd.Entity.Educacion;
 import com.portfolio.jrd.Entity.Persona;
 import com.portfolio.jrd.Security.Controller.Mensaje;
 import com.portfolio.jrd.Service.ImpPersonaService;
@@ -52,6 +50,7 @@ public class PersonaController {
         personaService.delete(id);
         return new ResponseEntity(new Mensaje("Educacion eliminada"), HttpStatus.OK);
     }
+    */
     
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody dtoPersona dtopersona){
@@ -63,12 +62,13 @@ public class PersonaController {
         }
         
         Persona persona = new Persona(
-                dtopersona.getNombre(), dtopersona.getDescripcion()
+                dtopersona.getNombre(), dtopersona.getApellido(),
+                dtopersona.getDescripcion(), dtopersona.getImg()
             );
         personaService.save(persona);
         return new ResponseEntity(new Mensaje("Persona creada"), HttpStatus.OK);
                 
-    }*/
+    }
     
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoPersona dtopersona){
